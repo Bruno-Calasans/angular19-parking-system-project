@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run the type checker before committing
+echo "Running type checker..."
+npx tsc --noEmit || exit 1
+
+# Run the linter before committing
+echo "Running linter..."
+#npx eslint --fix --ext .js,.ts,.tsx,.vue . || exit 1
+ng lint || exit 1
+
+# Run the formatter before committing
+echo "Running formatter..."
+npm run format || exit 1
+
+# Run the tests before committing
+#echo "Running tests..."
+#npx vitest run || exit 1
+
+# lint staged files
+echo "Linting staged files..."
+npx lint-staged || exit 1
+
+
+# If all checks pass, allow the commit to proceed
+echo "All checks passed. Proceeding with commit."
+
+# If any check fails, exit with a non-zero status
+exit 0
+# Note: Ensure that the necessary dependencies (eslint, prettier, tsc, vitest) are installed in your project.
