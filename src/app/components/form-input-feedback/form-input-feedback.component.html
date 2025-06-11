@@ -1,0 +1,53 @@
+<div class="flex flex-col gap-1">
+  @if (inputType() === 'email') {
+    @if (errors && (isDirty || isTouched)) {
+      @if (errors['required']) {
+        <app-form-error-msg msg="Required field" />
+      }
+
+      @if (errors['email']) {
+        <app-form-error-msg msg="Invalid email" />
+      }
+    }
+  }
+
+  @if (inputType() === 'text') {
+    @if (errors && (isDirty || isTouched)) {
+      @if (errors['required']) {
+        <app-form-error-msg msg="Required field" />
+      }
+
+      @if (errors['maxlength']) {
+        <app-form-error-msg
+          [msg]="`Max length is ${ errors['maxlength']['requiredLength'] }`"
+        />
+      }
+
+      @if (errors['minlength']) {
+        <app-form-error-msg
+          [msg]="`Min lenght is ${ errors['minlength']['requiredLength'] }`"
+        />
+      }
+
+      @if (errors['pattern']) {
+        <app-form-error-msg msg="Invalid format. Please check your input." />
+      }
+    }
+  }
+
+  @if (inputType() === 'number') {
+    @if (errors && (isDirty || isTouched)) {
+      @if (errors['required']) {
+        <app-form-error-msg msg="Required field" />
+      }
+
+      @if (errors['max']) {
+        <app-form-error-msg [msg]="`Max value is ${ errors['max']['max'] }`" />
+      }
+
+      @if (errors['min']) {
+        <app-form-error-msg [msg]="`Min value is ${ errors['min']['min'] }`" />
+      }
+    }
+  }
+</div>

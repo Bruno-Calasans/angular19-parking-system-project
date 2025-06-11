@@ -1,0 +1,65 @@
+<section>
+  <div class="hero bg-base-200 min-h-screen">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <div class="text-center lg:text-left">
+        <h1 class="text-5xl font-bold">Login now!</h1>
+        <p class="py-6">
+          Welcome back! Please enter your credentials to access your account. If
+          you don't have an account yet, you can register for one.
+        </p>
+      </div>
+
+      <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <form [formGroup]="loginForm" class="card-body" (submit)="onSubmit()">
+          <fieldset class="fieldset flex flex-col gap-3">
+            <!-- Email input -->
+            <label class="label flex-col items-start">
+              Email
+              <input
+                name="email"
+                type="email"
+                class="input"
+                placeholder="Email"
+                formControlName="email"
+              />
+              <app-form-input-feedback
+                [form]="loginForm"
+                inputType="email"
+                controlName="email"
+              />
+            </label>
+
+            <!-- Password input -->
+            <label class="label flex-col items-start">
+              Password
+              <input
+                id="password"
+                name="password"
+                type="password"
+                class="input"
+                placeholder="Password"
+                formControlName="password"
+              />
+              <app-form-input-feedback
+                [form]="loginForm"
+                inputType="text"
+                controlName="password"
+              />
+            </label>
+
+            <div class="flex flex-col items-start my-2 gap-1">
+              <a class="link link-hover">Forgot password?</a>
+              <a href="register" class="text-indigo-500 link link-hover"
+                >I don't have a account</a
+              >
+            </div>
+
+            <button [disabled]="loginForm.invalid" class="btn btn-neutral mt-4">
+              Login
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
