@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../types/User.type';
-import { FormInputFeedbackComponent } from '../components/form-input-feedback/form-input-feedback.component';
 import { Router } from '@angular/router';
+import { FormInputFeedbackComponent } from '../../components/form-input-feedback/form-input-feedback.component';
 
 @Component({
   selector: 'app-register',

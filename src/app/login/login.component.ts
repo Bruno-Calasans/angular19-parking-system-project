@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { FormInputFeedbackComponent } from '../components/form-input-feedback/form-input-feedback.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../types/User.type';
 import { Router } from '@angular/router';
+import { FormInputFeedbackComponent } from '../../components/form-input-feedback/form-input-feedback.component';
 
 @Component({
   selector: 'app-login',
