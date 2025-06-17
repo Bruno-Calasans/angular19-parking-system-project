@@ -1,24 +1,24 @@
 import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { FormInputFeedbackComponent } from '../components/form-input-feedback/form-input-feedback.component';
-import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../types/User.type';
+import { FormInputFeedbackComponent } from '../components/form-input-feedback/form-input-feedback.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  imports: [ReactiveFormsModule, FormInputFeedbackComponent, CommonModule],
-  templateUrl: './login.component.html',
+  selector: 'app-register',
+  imports: [ReactiveFormsModule, FormInputFeedbackComponent],
+  templateUrl: './register.component.html',
   styles: ``,
 })
-export class LoginComponent {
-  title = 'login';
+export class RegisterComponent {
+  title = 'register';
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
 
-  loginForm = this.fb.group({
+  registerForm = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
     password: [
       '',
@@ -28,16 +28,16 @@ export class LoginComponent {
 
   async onSubmit() {
     try {
-      const loginInput = this.loginForm.value as Omit<User, 'id' | 'name'>;
+      const registerInput = this.registerForm.value as Required<User>;
       await this.authService
-        .login(loginInput)
-        .then(() => alert('Login succesfully'))
+        .register(registerInput)
+        .then(() => alert('Register succesfully'))
         .catch(err => alert(err.message));
-      this.loginForm.reset();
+      this.registerForm.reset();
       this.router.navigateByUrl('/');
     } catch (error) {
       alert(
-        'Login failed: ' +
+        'Register failed: ' +
           (error instanceof Error ? error.message : 'Unknown error'),
       );
     }

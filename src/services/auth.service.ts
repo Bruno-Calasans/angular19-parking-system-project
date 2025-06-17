@@ -32,8 +32,12 @@ export class AuthService {
 
   async register(input: Omit<User, 'id'>) {
     try {
+      const existingUser = await this.userService.getUserByEmail(input.email);
+      if (existingUser.result.length > 0) {
+        throw new Error('Email already registered');
+      }
       const response = await this.userService.createUser(input);
-      console.log(response);
+      return response.result[0];
     } catch (error) {
       throw new Error(
         'Register failed: ' +

@@ -32,10 +32,9 @@ export class UserService {
   async createUser(input: Omit<User, 'id'>) {
     try {
       const response = await firstValueFrom(
-        this.http.post<Response<User> | ResponseError>(
-          USER_API_ENDPOINT,
+        this.http.post<Response<User> | ResponseError>(USER_API_ENDPOINT, [
           input,
-        ),
+        ]),
       );
       if (response.status === 'failure') throw new Error('Request failed');
       return response;

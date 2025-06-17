@@ -18,9 +18,10 @@
               <input
                 name="email"
                 type="email"
-                class="input"
                 placeholder="Email"
                 formControlName="email"
+                class="input validator"
+                required
               />
               <app-form-input-feedback
                 [form]="loginForm"
@@ -36,9 +37,11 @@
                 id="password"
                 name="password"
                 type="password"
-                class="input"
+                class="input validator"
                 placeholder="Password"
                 formControlName="password"
+                required
+                minlength="6"
               />
               <app-form-input-feedback
                 [form]="loginForm"
@@ -48,7 +51,6 @@
             </label>
 
             <div class="flex flex-col items-start my-2 gap-1">
-              <a class="link link-hover">Forgot password?</a>
               <a href="register" class="text-indigo-500 link link-hover"
                 >I don't have a account</a
               >
