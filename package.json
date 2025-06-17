@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "component": "ng g c --skip-tests --inline-style",
+    "service": "ng g s --skip-tests",
     "format": "prettier --write \"src/**/*.{ts,html,scss}\"",
     "lint": "ng lint",
     "prepare": "husky install"
